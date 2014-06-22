@@ -35,7 +35,7 @@
 /* ----------------------------- USB interface ----------------------------- */
 /* ------------------------------------------------------------------------- */
 
-PROGMEM char usbHidReportDescriptor[50] = { /* USB report descriptor, size must match usbconfig.h */
+PROGMEM const char usbHidReportDescriptor[50] = { /* USB report descriptor, size must match usbconfig.h */
     0x05, 0x01, // USAGE_PAGE (Generic Desktop)
     0x15, 0x00, // LOGICAL_MINIMUM (0)
     0x26, 0xff, 0x00,  // LOGICAL_MAXIMUM (255)

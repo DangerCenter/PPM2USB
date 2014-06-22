@@ -22,8 +22,8 @@
 //=========================================================================
 
 #include <avr/io.h>
+#include <avr/interrupt.h> 
 #include "ppm.h"
-#include <avr/interrupt.h>
 
 #define PPM_TCNT TCNT1
 
@@ -41,7 +41,8 @@ volatile unsigned int timeOld;
 /**
 * Interrupt: Compare 1A match = timeout
 */
-SIGNAL (SIG_OUTPUT_COMPARE1A) {
+//SIGNAL (SIG_OUTPUT_COMPARE1A) {
+ISR(TIMER1_COMPA_vect)    {
   if (chan!=-1) {
     ppmNewData=1;
   }
@@ -51,7 +52,8 @@ SIGNAL (SIG_OUTPUT_COMPARE1A) {
 /**
 * Interrupt: ICP-Edge detect
 */
-SIGNAL (SIG_INPUT_CAPTURE1) {
+//SIGNAL (SIG_INPUT_CAPTURE1) {
+ISR(TIMER1_CAPT_vect)  {
   unsigned int time=ICR1;
   OCR1A=time+T_OUT;
   if (time>timeOld) {
